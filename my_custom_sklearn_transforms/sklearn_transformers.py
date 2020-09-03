@@ -42,7 +42,7 @@ class Normalization():
         return self
     def transform(self, X):
         data = X.copy()
-        return pd.DataFrame.from_records(data=self.scaler.transform(X=data),columns=data.columns)
+        return self.scaler.transform(data)
         #return data_sc.join(data[data.columns[len(data.columns)-1]])
         #data_sc = pd.concat([data_sc, data], axis=1, sort=False)
         #return data_sc.loc[:,~data_sc.columns.duplicated()]
