@@ -38,11 +38,11 @@ class Normalization():
         self.scaler = RobustScaler()
     def fit(self, X, y=None):
         data = X.copy()
-        self.scaler.fit(data[data.columns[:12]])
+        self.scaler.fit(data)
         return self
     def transform(self, X):
         data = X.copy()
-        data_sc = pd.DataFrame.from_records(data=self.scaler.transform(X=data[data.columns[:12]]),columns=data.columns[:12])
+        return data_sc = pd.DataFrame.from_records(data=self.scaler.transform(X=data),columns=data.columns)
         #return data_sc.join(data[data.columns[len(data.columns)-1]])
-        data_sc = pd.concat([data_sc, data], axis=1, sort=False)
-        return data_sc.loc[:,~data_sc.columns.duplicated()]
+        #data_sc = pd.concat([data_sc, data], axis=1, sort=False)
+        #return data_sc.loc[:,~data_sc.columns.duplicated()]
