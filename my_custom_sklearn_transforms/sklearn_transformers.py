@@ -28,8 +28,9 @@ class Imputation():
         return self
     def transform(self, X):
         data = X.copy()
+        target = data[data.columns[len(data.columns)-1]]
         data_si = pd.DataFrame.from_records(data=self.si.transform(X=data[data.columns[:12]]),columns=data.columns[:12])
-        return data_si.join(data[data.columns[len(data.columns)-1]])
+        return data_si.join(target)
     
 class Normalization():
     def __init__(self):
@@ -40,5 +41,6 @@ class Normalization():
         return self
     def transform(self, X):
         data = X.copy()
+        target = data[data.columns[len(data.columns)-1]]
         data_sc = pd.DataFrame.from_records(data=self.scaler.transform(X=data[data.columns[:12]]),columns=data.columns[:12])
-        return data_sc.join(data[data.columns[len(data.columns)-1]])
+        return data_sc.join(target)
