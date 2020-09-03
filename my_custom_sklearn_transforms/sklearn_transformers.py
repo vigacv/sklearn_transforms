@@ -22,7 +22,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
 class Imputation():
     def __init__(self):
         self.si = SimpleImputer(missing_values=np.nan,strategy='mean', fill_value=0, verbose=0, copy=True)
-    def fit(self, X):
+    def fit(self, X, y=None):
         data = X.copy()
         self.si.fit(data[data.columns[:12]])
         return self
@@ -34,7 +34,7 @@ class Imputation():
 class Normalization():
     def __init__(self):
         self.scaler = RobustScaler()
-    def fit(self, X):
+    def fit(self, X, y=None):
         data = X.copy()
         self.scaler.fit(data[data.columns[:12]])
         return self
